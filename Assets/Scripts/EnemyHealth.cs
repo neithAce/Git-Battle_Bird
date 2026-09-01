@@ -15,6 +15,12 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            Score score = GetComponent<Score>();
+            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+            if (score != null && scoreManager != null)
+            {
+                scoreManager.AddScore(score.scoreValue);
+            }
             Destroy(gameObject);
         }
     }
