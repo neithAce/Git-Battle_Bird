@@ -21,6 +21,13 @@ public class EnemyHealth : MonoBehaviour
             {
                 scoreManager.AddScore(score.scoreValue);
             }
+
+            PowerUpDrop powerUpDrop = GetComponent<PowerUpDrop>();
+            if (powerUpDrop != null)
+            {
+                powerUpDrop.DropPowerUp();
+            }
+
             Destroy(gameObject);
         }
     }

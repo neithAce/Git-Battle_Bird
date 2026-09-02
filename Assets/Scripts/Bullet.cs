@@ -12,7 +12,12 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position += Vector3.right * speed * Time.fixedDeltaTime;
+        transform.position += transform.right * speed * Time.fixedDeltaTime;
+        float rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1f, 0f, 0f)).x;
+        if (transform.position.x > rightEdge + 1f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

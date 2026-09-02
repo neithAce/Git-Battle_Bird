@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class StageSelectionManager : MonoBehaviour
 {
@@ -35,5 +36,17 @@ public class StageSelectionManager : MonoBehaviour
     public void ClosePopUp()
     {
         stagePopUp.SetActive(false);
+    }
+
+    public void PlaySelectedStage()
+    {
+        PlayerPrefs.SetInt("SelectedStage", selectedStage);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
