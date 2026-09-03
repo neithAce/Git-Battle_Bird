@@ -18,6 +18,10 @@ public class PowerUpDrop : MonoBehaviour
         }
 
         Instantiate(powerUpPrefab, transform.position, Quaternion.identity);
+    }
+
+    public static void StartCooldown()
+    {
         nextDroptime = Time.time + 30f;
     }
 }

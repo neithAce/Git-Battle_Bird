@@ -2774,6 +2774,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 92819248076257040, guid: 1d5fa81e0a20b8a43aaabe9a624506a2, type: 3}
   enemyShooterPrefab: {fileID: 92819248076257040, guid: 16c0109a21f4c57478ddfc030f0587cd, type: 3}
   enemyPowerUpPrefab: {fileID: 92819248076257040, guid: 3d752075fb89ddb429844bb6baec428f, type: 3}
+  enemyChaserPrefab: {fileID: 92819248076257040, guid: 8c18d846d2fa67740abda14a583fbaca, type: 3}
   spawnInterval: 2
   minY: -4
   maxY: 4

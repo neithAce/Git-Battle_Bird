@@ -24,16 +24,16 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public bool TakeDamage(int damage)
     {
         if (isDead)
         {
-            return;
+            return false;
         }
 
         if(immunityTimer > 0f) 
         {
-            return;
+            return false;
         }
 
         currentHealth = Mathf.Max(currentHealth - damage, 0);
@@ -45,6 +45,8 @@ public class PlayerHealth : MonoBehaviour
             isDead = true;
             gameOverManager.ShowGameOver();
         }
+
+        return true;
     }
 
     private void UpdateHealthUI()

@@ -12,6 +12,7 @@ public class PowerUp : MonoBehaviour
                 playerAttack.ActivateTripleShot();
             }
 
+            PowerUpDrop.StartCooldown();
             Destroy(gameObject);
         }
     }
