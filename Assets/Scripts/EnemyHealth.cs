@@ -7,7 +7,19 @@ public class EnemyHealth : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+        if(selectedStage == 2)
+        {
+            currentHealth = maxHealth + 1;
+        }
+        else if(selectedStage == 3)
+        {
+            currentHealth = maxHealth + 2;
+        }
+        else
+        {
+            currentHealth = maxHealth;
+        }
     }
 
     public void TakeDamage(int damage)

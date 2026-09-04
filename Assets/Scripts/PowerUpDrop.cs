@@ -24,4 +24,9 @@ public class PowerUpDrop : MonoBehaviour
     {
         nextDroptime = Time.time + 30f;
     }
+
+    public static void ResetCooldown()
+    {
+        nextDroptime = 0f;
+    }
 }

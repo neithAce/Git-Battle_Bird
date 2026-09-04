@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6709416837432783734}
   - component: {fileID: 2801089442624020767}
   - component: {fileID: 3209665441143515858}
+  - component: {fileID: 417398691531961072}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Untagged
@@ -212,3 +213,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDamage
   damage: 1
+--- !u!114 &417398691531961072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92819248076257040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc94a3509d5a33b4ea43c54abb92564a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveEnemy

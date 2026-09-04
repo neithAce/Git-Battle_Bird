@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2801089442624020767}
   - component: {fileID: 3209665441143515858}
   - component: {fileID: 6732949141165786361}
+  - component: {fileID: 4072252250427049796}
   m_Layer: 3
   m_Name: EnemyShooter
   m_TagString: Untagged
@@ -227,3 +228,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
   enemyBulletPrefab: {fileID: 6235888194436971473, guid: a6ed3a10aa4ce4a49a81fd0b873546c0, type: 3}
   shootInterval: 3
+--- !u!114 &4072252250427049796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92819248076257040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc94a3509d5a33b4ea43c54abb92564a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveEnemy
