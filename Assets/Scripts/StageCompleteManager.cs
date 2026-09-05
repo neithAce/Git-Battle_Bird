@@ -35,4 +35,14 @@ public class StageCompleteManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void NextStage()
+    {
+        Time.timeScale = 1f;
+        int currentStage = PlayerPrefs.GetInt("SelectedStage", 1);
+        int nextStage = currentStage + 1;
+        PlayerPrefs.SetInt("SelectedStage", nextStage);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("GameScene");
+    }
 }

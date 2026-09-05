@@ -8,9 +8,16 @@ public class WaveManager : MonoBehaviour
     private int currentWave = 1;
     public float waveDuration = 90f;
     private float waveTimer;
+    private float battleTimer;
+    private bool battleEnemySpawned = false;
+    private bool battleShooterSpawned = false;
+    private bool secondBattleEnemySpawned = false;
+    private bool secondBattleShooterSpawned = false;
+    private bool thirdBattleEnemySpawned = false;
     private bool spawningActive = true;
     private bool waveTimerFinished = false;
     public EnemySpawner enemySpawner;
+    public BattleEnemySpawner battleEnemySpawner;
     public GameObject stageCompletePopUp;
     private bool stageCompleteShown = false;
 
@@ -26,6 +33,12 @@ public class WaveManager : MonoBehaviour
         enemySpawner.SetStageSpawnInterval(selectedStage, waveNumber);
         PowerUpDrop.ResetCooldown();
         waveTimer = waveDuration;
+        battleTimer = 0f;
+        battleEnemySpawned = false;
+        battleShooterSpawned = false;
+        secondBattleEnemySpawned = false;
+        secondBattleShooterSpawned = false;
+        thirdBattleEnemySpawned = false;
         waveTimerFinished = false;
         spawningActive = false;
         waveText.text = "Wave " + waveNumber;
@@ -40,7 +53,13 @@ public class WaveManager : MonoBehaviour
         Debug.Log("Wave " + currentWave + " dimulai. Spawn enemy diaktifkan.");
         if (enemySpawner != null)
         {
-            if(currentWave == 1)
+            int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+            if(selectedStage == 2 || selectedStage == 3)
+            {
+                enemySpawner.SetMixedEnemySpawn();
+                enemySpawner.StartPowerUpSpawning();
+            }
+            else if(currentWave == 1)
             {
                 enemySpawner.SetEnemyPrefab(enemySpawner.enemyPrefab);
             }
@@ -78,6 +97,169 @@ public class WaveManager : MonoBehaviour
         if (spawningActive)
         {
             waveTimer -= Time.deltaTime;
+            battleTimer += Time.deltaTime;
+            //stage 2
+            if(battleTimer >= 80f && !battleEnemySpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if(selectedStage == 2 && currentWave == 1)
+                {
+                    battleEnemySpawner.SpawnBattleEnemy();
+                    battleEnemySpawned = true;
+                }
+            }
+
+            if(battleTimer >= 70f && !battleShooterSpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if(selectedStage == 2 && currentWave == 2)
+                {
+                    battleEnemySpawner.SpawnBattleEnemyShooter();
+                    battleShooterSpawned = true;
+                }
+            }
+
+            if(battleTimer >= 60f && !battleEnemySpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if(selectedStage == 2 && currentWave == 3)
+                {
+                    battleEnemySpawner.SpawnBattleEnemy();
+                    battleEnemySpawned = true;
+                }
+            }
+
+            if(battleTimer >= 80f && !battleShooterSpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if(selectedStage == 2 && currentWave == 3)
+                {
+                    battleEnemySpawner.SpawnBattleEnemyShooter();
+                    battleShooterSpawned = true;
+                }
+            }
+
+            if(battleTimer >= 30f && !battleEnemySpawned && !battleShooterSpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if (selectedStage == 2 && currentWave == 4)
+                {
+                    battleEnemySpawner.SpawnBattleEnemy();
+                    battleEnemySpawner.SpawnBattleEnemyShooter();
+                    battleEnemySpawned = true;
+                    battleShooterSpawned = true;
+                }
+            }
+
+            if(battleTimer >= 60f && !secondBattleEnemySpawned && !secondBattleShooterSpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if(selectedStage == 2 && currentWave == 4)
+                {
+                    battleEnemySpawner.SpawnBattleEnemy();
+                    battleEnemySpawner.SpawnBattleEnemyShooter();
+                    secondBattleEnemySpawned = true;
+                    secondBattleShooterSpawned = true;
+                }
+            }
+            //stage 3
+            if (battleTimer >= 45f && !secondBattleEnemySpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if (selectedStage == 3 && currentWave == 1)
+                {
+                    battleEnemySpawner.SpawnBattleEnemy();
+                    battleEnemySpawner.SpawnBattleEnemy();
+                    battleEnemySpawner.SpawnBattleEnemyShooter();
+                    battleEnemySpawned = true;
+                    secondBattleEnemySpawned = true;
+                    battleShooterSpawned = true;
+                }
+            }
+
+            if (battleTimer >= 30f && !battleShooterSpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if (selectedStage == 3 && currentWave == 2)
+                {
+                    battleEnemySpawner.SpawnBattleEnemyShooter();
+                    battleShooterSpawned = true;
+                }
+            }
+
+            if(battleTimer >= 70f && !secondBattleEnemySpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if(selectedStage == 3 && currentWave == 2)
+                {
+                    battleEnemySpawner.SpawnBattleEnemy();
+                    battleEnemySpawner.SpawnBattleEnemyShooter();
+                    battleEnemySpawner.SpawnBattleEnemyShooter();
+                    secondBattleEnemySpawned = true;
+                    secondBattleShooterSpawned = true;
+                }
+            }
+
+            if(battleTimer >= 1f && !battleEnemySpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if (selectedStage == 3 && currentWave == 3)
+                {
+                    battleEnemySpawner.SpawnBattleEnemy();
+                    battleEnemySpawned = true;
+                }
+            }
+
+            if (battleTimer >= 2f && !secondBattleEnemySpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if (selectedStage == 3 && currentWave == 3)
+                {
+                    battleEnemySpawner.SpawnBattleEnemy();
+                    secondBattleEnemySpawned = true;
+                }
+            }
+
+            if (battleTimer >= 3f && !thirdBattleEnemySpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if (selectedStage == 3 && currentWave == 3)
+                {
+                    battleEnemySpawner.SpawnBattleEnemy();
+                    thirdBattleEnemySpawned = true;
+                }
+            }
+
+            if(battleTimer >= 20f && !battleShooterSpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if(selectedStage == 3 && currentWave == 3)
+                {
+                    battleEnemySpawner.SpawnBattleEnemyShooter();
+                    battleShooterSpawned = true;
+                }
+            }
+
+            if(battleTimer >= 20f && !battleEnemySpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if (selectedStage == 3 && currentWave == 4)
+                {
+                    battleEnemySpawner.SpawnBattleEnemy();
+                    battleEnemySpawned = true;
+                }
+            }
+
+            if(battleTimer >= 40f && !battleShooterSpawned)
+            {
+                int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+                if (selectedStage == 3 && currentWave == 4)
+                {
+                    battleEnemySpawner.SpawnBattleEnemyShooter();
+                    battleEnemySpawner.SpawnBattleEnemyShooter();
+                    battleShooterSpawned = true;
+                }
+            }
             if (waveTimer <= 0f)
             {
                 waveTimer = 0f;
@@ -90,8 +272,8 @@ public class WaveManager : MonoBehaviour
                 Debug.Log("Waktu wave habis. Spawn enemy dihentikan.");
             }
         }
-        
-        if(waveTimerFinished && !AreWaveEnemiesAlive() && !stageCompleteShown)
+
+        if (waveTimerFinished && !AreWaveEnemiesAlive() && !stageCompleteShown)
         {
             StartNextWave();
         }

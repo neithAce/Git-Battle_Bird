@@ -6,12 +6,11 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyShooterPrefab;
     public GameObject enemyPowerUpPrefab;
     public GameObject enemyChaserPrefab;
-    public GameObject enemyBattlePrefab;
-    public GameObject enemyBattleShooterPrefab;
     public float spawnInterval = 3f;
     public float wave4SpawnInterval = 2.5f;
     public float stage2And3StartInterval = 2.5f;
     public float stage2And3IntervalDecrease = 0.2f;
+    public float stage3Wave4SpawnInterval = 6f;
     public float minY = -4f;
     public float maxY = 4f;
     [Range(0f, 1f)] public float shooterSpawnChance = 0.3f;
@@ -19,6 +18,7 @@ public class EnemySpawner : MonoBehaviour
     private GameObject currentEnemyPrefab;
     private bool mixedSpawn = false;
     private bool powerUpSpawning = false;
+    private bool doubleSpawn = false;
 
     public void StartSpawning()
     {
@@ -29,8 +29,15 @@ public class EnemySpawner : MonoBehaviour
         }
 
         spawning = true;
-        Debug.Log("EnemySpawner: StartSpawning dipanggil. Interval: " + spawnInterval);
-        InvokeRepeating(nameof(SpawnEnemy), 1f, spawnInterval);
+        float intervalToUse = spawnInterval;
+        int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
+        if(selectedStage == 1 && mixedSpawn)
+        {
+            intervalToUse = wave4SpawnInterval;
+        }
+
+        Debug.Log("EnemySpawner: StartSpawning dipanggil. Interval: " + intervalToUse);
+        InvokeRepeating(nameof(SpawnEnemy), 1f, intervalToUse);
     }
 
     public void SetEnemyPrefab(GameObject enemyPrefabToUse)
@@ -43,13 +50,16 @@ public class EnemySpawner : MonoBehaviour
     {
         currentEnemyPrefab = null;
         mixedSpawn = true;
-        CancelInvoke(nameof(SpawnEnemy));
-        InvokeRepeating(nameof(SpawnEnemy), 1f, wave4SpawnInterval);
     }
 
     public void SetStageSpawnInterval(int stageNumber, int waveNumber)
     {
-        if(stageNumber == 2 || stageNumber == 3)
+        doubleSpawn = (stageNumber == 3 && waveNumber == 4);
+        if(stageNumber == 3 && waveNumber == 4)
+        {
+            spawnInterval = stage3Wave4SpawnInterval;
+        }
+        else if(stageNumber == 2 || stageNumber == 3)
         {
             float newInterval = stage2And3StartInterval - (waveNumber - 1) * stage2And3IntervalDecrease;
             spawnInterval = newInterval;
@@ -99,23 +109,38 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPosition = new Vector3(rightEdge + 1f, randomY, 0f);
         if (mixedSpawn)
         {
-            float randomValue = Random.value;
-            if (randomValue < 0.25f)
+            SpawnMixedEnemy(spawnPosition);
+            if (doubleSpawn)
             {
-                Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-            }
-            else if (randomValue < 0.50f)
-            {
-                Instantiate(enemyShooterPrefab, spawnPosition, Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(enemyChaserPrefab, spawnPosition, Quaternion.identity);
+                float secondRandomY = Random.Range(minY, maxY);
+                Vector3 secondSpawnPosition = new Vector3(rightEdge + 1f, secondRandomY, 0f);
+                SpawnMixedEnemy(secondSpawnPosition);
             }
         }
         else if (currentEnemyPrefab != null)
         {
             Instantiate(currentEnemyPrefab, spawnPosition, Quaternion.identity);
+            if (doubleSpawn)
+            {
+                Instantiate(currentEnemyPrefab, spawnPosition, Quaternion.identity);
+            }
+        }
+    }
+
+    private void SpawnMixedEnemy(Vector3 spawnPosition)
+    {
+        float randomValue = Random.value;
+        if(randomValue < 0.25f)
+        {
+            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        }
+        else if(randomValue < 0.50f)
+        {
+            Instantiate(enemyShooterPrefab, spawnPosition, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(enemyChaserPrefab, spawnPosition, Quaternion.identity);
         }
     }
 }

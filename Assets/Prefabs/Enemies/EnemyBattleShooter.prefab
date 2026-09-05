@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a279e58a8f03ae4ebf0ec4826ab8c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 10
+  maxHealth: 20
 --- !u!114 &2801089442624020767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23435535b4c3a1b4a81c3013a5303c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Score
-  scoreValue: 100
+  scoreValue: 1000
 --- !u!114 &3209665441143515858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +215,8 @@ MonoBehaviour:
   horizontalRange: 2
   verticalRange: 1.5
   moveSpeed: 2
+  enterSpeed: 5
+  targetViewportX: 0.7
 --- !u!114 &7161978519431664176
 MonoBehaviour:
   m_ObjectHideFlags: 0

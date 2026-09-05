@@ -3,10 +3,17 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth = 3;
+    public bool scaleWithStage = true;
     private int currentHealth;
 
     private void Start()
     {
+        if (!scaleWithStage)
+        {
+            currentHealth = maxHealth;
+            return;
+        }
+
         int selectedStage = PlayerPrefs.GetInt("SelectedStage", 1);
         if(selectedStage == 2)
         {

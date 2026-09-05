@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 7877017863942636681}
   - component: {fileID: 2801089442624020767}
   - component: {fileID: 3209665441143515858}
-  - component: {fileID: 399787302859679761}
   - component: {fileID: 6788780300997478631}
+  - component: {fileID: 7944027811671951597}
   m_Layer: 3
   m_Name: EnemyBattle
   m_TagString: BattleEnemy
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a279e58a8f03ae4ebf0ec4826ab8c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 3
+  maxHealth: 15
 --- !u!114 &2801089442624020767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23435535b4c3a1b4a81c3013a5303c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Score
-  scoreValue: 100
+  scoreValue: 500
 --- !u!114 &3209665441143515858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,21 +199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDamage
   damage: 1
---- !u!114 &399787302859679761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92819248076257040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcdc15fff80cedc49bc373e9240e70a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyBattleMovement
-  horizontalRange: 2
-  verticalRange: 1.5
-  moveSpeed: 2
 --- !u!114 &6788780300997478631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,3 +211,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc94a3509d5a33b4ea43c54abb92564a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveEnemy
+--- !u!114 &7944027811671951597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92819248076257040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38c1e7fdb4c1c9499fbeb1598d70094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBattleLargeMovement
+  enterSpeed: 5
+  movementSpeed: 0.7
