@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - BattleEnemy
+  - Mountain
+  - Grass
   layers:
   - Default
   - TransparentFX
@@ -39,8 +41,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3379141037
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Cloud
+    uniqueID: 1082119627
     locked: 0
   m_RenderingLayers:
   - Default

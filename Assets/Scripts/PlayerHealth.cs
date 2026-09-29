@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     private int currentHealth;
     public TMP_Text healthText;
     public GameOverManager gameOverManager;
+    public CameraShake cameraShake;
     private bool isDead = false;
     private float immunityTimer = 0f;
 
@@ -38,11 +39,17 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth = Mathf.Max(currentHealth - damage, 0);
         immunityTimer = 2f;
+        if(cameraShake != null)
+        {
+            cameraShake.Shake();
+        }
+
         UpdateHealthUI();
         Debug.Log("Player took damage. Current health: " + currentHealth);
         if (currentHealth <= 0)
         {
             isDead = true;
+            cameraShake.StopShake();
             gameOverManager.ShowGameOver();
         }
 
