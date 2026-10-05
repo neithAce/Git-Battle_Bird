@@ -18,6 +18,7 @@ public class WaveManager : MonoBehaviour
     private bool waveTimerFinished = false;
     public EnemySpawner enemySpawner;
     public BattleEnemySpawner battleEnemySpawner;
+    public CloudSpawner cloudSpawner;
     public GameObject stageCompletePopUp;
     private bool stageCompleteShown = false;
 
@@ -39,6 +40,11 @@ public class WaveManager : MonoBehaviour
         secondBattleEnemySpawned = false;
         secondBattleShooterSpawned = false;
         thirdBattleEnemySpawned = false;
+        if(cloudSpawner != null)
+        {
+            cloudSpawner.StartCloudSpawning();
+        }
+
         waveTimerFinished = false;
         spawningActive = false;
         waveText.text = "Wave " + waveNumber;
@@ -268,6 +274,10 @@ public class WaveManager : MonoBehaviour
                 if (enemySpawner != null)
                 {
                     enemySpawner.StopSpawning();
+                }
+                if (cloudSpawner != null)
+                {
+                    cloudSpawner.StopCloudSpawning();
                 }
                 Debug.Log("Waktu wave habis. Spawn enemy dihentikan.");
             }
