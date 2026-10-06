@@ -43,6 +43,11 @@ public class PauseManager : MonoBehaviour
     {
         isPaused = true;
         pausePanel.SetActive(true);
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayPauseMusic();
+        }
+
         Time.timeScale = 0f;
     }
 
@@ -50,6 +55,12 @@ public class PauseManager : MonoBehaviour
     {
         isPaused = false;
         pausePanel.SetActive(false);
+        if(AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopSpecialMusic();
+            AudioManager.Instance.PlayMusic();
+        }
+
         Time.timeScale = 1f;
     }
 

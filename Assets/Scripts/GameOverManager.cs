@@ -20,6 +20,11 @@ public class GameOverManager : MonoBehaviour
         highScoreText.text = "High Score\n" + highScore;
 
         gameOverPopUp.SetActive(true);
+        if(AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayGameOverMusic();
+        }
+
         Time.timeScale = 0f;
     }
 

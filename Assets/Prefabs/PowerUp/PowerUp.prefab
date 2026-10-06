@@ -259,3 +259,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dabf7dde92332e41844b46f6ded0b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp
+  pickupSFX: {fileID: 8300000, guid: aeddd69897baf3441904d2f8a3c33524, type: 3}

@@ -5,6 +5,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public float fireRate = 0.2f;
+    public AudioClip shootSFX;
     private float nextFireTime = 0f;
     private bool tripleShotActive = false;
     private float tripleShotTimer = 0f;
@@ -29,6 +30,11 @@ public class PlayerAttack : MonoBehaviour
 
     private void Shoot()
     {
+        if(AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(shootSFX);
+        }
+
         if (tripleShotActive) {
             Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0f, 0f, 25f));
             Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
@@ -44,5 +50,15 @@ public class PlayerAttack : MonoBehaviour
     {
         tripleShotActive = true;
         tripleShotTimer = 20f;
+    }
+
+    public bool IsTripleShotActive()
+    {
+        return tripleShotActive;
+    }
+
+    public float GetTripleShotRemainingTime()
+    {
+        return tripleShotTimer;
     }
 }

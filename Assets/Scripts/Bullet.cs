@@ -4,6 +4,7 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
     public float lifeTime = 5f;
+    public AudioClip hitSFX;
 
     private void Start()
     {
@@ -26,6 +27,11 @@ public class Bullet : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage(1);
+            if(AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFX(hitSFX);
+            }
+
             Destroy(gameObject);
         }
     }

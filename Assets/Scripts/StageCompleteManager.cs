@@ -21,6 +21,11 @@ public class StageCompleteManager : MonoBehaviour
         int highScore = PlayerPrefs.GetInt("HighScore_Stage" + selectedStage, 0);
         highScoreText.text = "HIGHSCORE\n" + highScore.ToString();
         stageCompletePopUp.SetActive(true);
+        if(AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayStageCompleteMusic();
+        }
+
         Time.timeScale = 0f;
     }
 

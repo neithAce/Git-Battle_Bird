@@ -170,3 +170,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   speed: 10
   lifeTime: 5
+  hitSFX: {fileID: 8300000, guid: 9a2f299b9706c7b438c6e8385fd39653, type: 3}

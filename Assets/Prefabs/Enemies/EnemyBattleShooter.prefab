@@ -233,6 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
   enemyBulletPrefab: {fileID: 6235888194436971473, guid: a6ed3a10aa4ce4a49a81fd0b873546c0, type: 3}
   shootInterval: 3
+  shootSFX: {fileID: 8300000, guid: b87ca1d2473e16b4aa0306b662909064, type: 3}
 --- !u!114 &8192367318549990265
 MonoBehaviour:
   m_ObjectHideFlags: 0

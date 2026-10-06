@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public CameraShake cameraShake;
     private bool isDead = false;
     private float immunityTimer = 0f;
+    public AudioClip damageSFX;
 
     private void Start()
     {
@@ -39,6 +40,11 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth = Mathf.Max(currentHealth - damage, 0);
         immunityTimer = 2f;
+        if(AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(damageSFX);
+        }
+
         if(cameraShake != null)
         {
             cameraShake.Shake();
