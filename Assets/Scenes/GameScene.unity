@@ -2723,6 +2723,7 @@ MonoBehaviour:
   firePoint: {fileID: 1230567127}
   fireRate: 0.2
   shootSFX: {fileID: 8300000, guid: 3483a0bc85f613147a4cce00833a5ea4, type: 3}
+  bulletFireVFX: {fileID: 7242343855744094398, guid: 798269b2aa4118e42a3e0d083d00232f, type: 3}
 --- !u!114 &626271772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2739,6 +2740,10 @@ MonoBehaviour:
   healthText: {fileID: 1891386538}
   gameOverManager: {fileID: 333916448}
   cameraShake: {fileID: 519420033}
+  playerVisual: {fileID: 1878252124}
+  damageFlashColor: {r: 1, g: 0.9, b: 0.5, a: 1}
+  blinkInterval: 0.1
+  transparentAlpha: 0.25
   damageSFX: {fileID: 8300000, guid: 1d0c6f90f8250734984351332e0d61c8, type: 3}
 --- !u!1 &652495608
 GameObject:

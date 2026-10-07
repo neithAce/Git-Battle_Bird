@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
     public Transform firePoint;
     public float fireRate = 0.2f;
     public AudioClip shootSFX;
+    public GameObject bulletFireVFX;
     private float nextFireTime = 0f;
     private bool tripleShotActive = false;
     private float tripleShotTimer = 0f;
@@ -43,6 +44,11 @@ public class PlayerAttack : MonoBehaviour
         else 
         {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        }
+
+        if(bulletFireVFX != null)
+        {
+            Instantiate(bulletFireVFX, firePoint.position, firePoint.rotation);
         }
     }
 

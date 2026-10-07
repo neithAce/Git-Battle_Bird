@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyChaserDamage : MonoBehaviour
 {
     public int damage = 1;
+    public GameObject hitVFX;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,6 +13,11 @@ public class EnemyChaserDamage : MonoBehaviour
             bool damageDealt = playerHealth.TakeDamage(damage);
             if (damageDealt)
             {
+                if(hitVFX != null)
+                {
+                    Instantiate(hitVFX, playerHealth.transform.position, Quaternion.identity);
+                }
+
                 Destroy(gameObject);
             }
         }

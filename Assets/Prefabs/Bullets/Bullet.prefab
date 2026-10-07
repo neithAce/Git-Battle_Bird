@@ -171,3 +171,4 @@ MonoBehaviour:
   speed: 10
   lifeTime: 5
   hitSFX: {fileID: 8300000, guid: 9a2f299b9706c7b438c6e8385fd39653, type: 3}
+  hitVFX: {fileID: 5382920874445327070, guid: b8784a676f2f5964089119a0341a3685, type: 3}

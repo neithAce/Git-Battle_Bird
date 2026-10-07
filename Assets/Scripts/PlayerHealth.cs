@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -8,8 +9,13 @@ public class PlayerHealth : MonoBehaviour
     public TMP_Text healthText;
     public GameOverManager gameOverManager;
     public CameraShake cameraShake;
+    public SpriteRenderer playerVisual;
+    public Color damageFlashColor = new Color(1f, 0.9f, 0.5f, 1f);
+    public float blinkInterval = 0.1f;
+    public float transparentAlpha = 0.25f;
     private bool isDead = false;
     private float immunityTimer = 0f;
+    private Coroutine damageBlinkCoroutine;
     public AudioClip damageSFX;
 
     private void Start()
@@ -40,7 +46,13 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth = Mathf.Max(currentHealth - damage, 0);
         immunityTimer = 2f;
-        if(AudioManager.Instance != null)
+        if(damageBlinkCoroutine != null)
+        {
+            StopCoroutine(damageBlinkCoroutine);
+        }
+
+        damageBlinkCoroutine = StartCoroutine(DamageBlink());
+        if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX(damageSFX);
         }
@@ -60,6 +72,32 @@ public class PlayerHealth : MonoBehaviour
         }
 
         return true;
+    }
+
+    private IEnumerator DamageBlink()
+    {
+        Color originalColor = playerVisual.color;
+        float elapsed = 0f;
+        bool visible = false;
+        while (elapsed < 2f)
+        {
+            visible = !visible;
+            Color blinkColor = damageFlashColor;
+            if(visible)
+            {
+                blinkColor.a = 1f;
+            }
+            else
+            {
+                blinkColor.a = transparentAlpha;
+            }
+
+            playerVisual.color = blinkColor;
+            yield return new WaitForSeconds(blinkInterval);
+            elapsed += blinkInterval;
+        }
+        playerVisual.color = originalColor;
+        damageBlinkCoroutine = null;
     }
 
     private void UpdateHealthUI()

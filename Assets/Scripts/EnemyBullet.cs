@@ -4,6 +4,7 @@ public class EnemyBullet : MonoBehaviour
 {
     public float speed = 8f;
     public float lifeTime = 5f;
+    public GameObject hitVFX;
     private Vector3 direction;
 
     private void Start()
@@ -31,7 +32,12 @@ public class EnemyBullet : MonoBehaviour
         PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            playerHealth.TakeDamage(1);
+            bool damageDealt = playerHealth.TakeDamage(1);
+            if(damageDealt && hitVFX != null)
+            {
+                Instantiate(hitVFX, playerHealth.transform.position, Quaternion.identity);
+            }
+
             Destroy(gameObject);
         }
     }

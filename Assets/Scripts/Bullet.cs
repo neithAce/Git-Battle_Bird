@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     public float speed = 10f;
     public float lifeTime = 5f;
     public AudioClip hitSFX;
+    public GameObject hitVFX;
 
     private void Start()
     {
@@ -26,6 +27,11 @@ public class Bullet : MonoBehaviour
         EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
         if (enemy != null)
         {
+            if(hitVFX != null)
+            {
+                Instantiate(hitVFX, transform.position, Quaternion.identity);
+            }
+
             enemy.TakeDamage(1);
             if(AudioManager.Instance != null)
             {

@@ -4,8 +4,10 @@ public class EnemyShooter : MonoBehaviour
 {
     public GameObject enemyBulletPrefab;
     public float shootInterval = 3f;
+    public Transform firePoint;
     private Transform player;
     public AudioClip shootSFX;
+    public GameObject enemyBulletFireVFX;
 
     private void Start()
     {
@@ -25,13 +27,19 @@ public class EnemyShooter : MonoBehaviour
             return;
         }
 
-        Vector3 direction = (player.position - transform.position).normalized;
+        Transform shootPoint = firePoint != null ? firePoint : transform;
+        Vector3 direction = (player.position - shootPoint.position).normalized;
         if(AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX(shootSFX);
         }
 
-        GameObject bullet = Instantiate(enemyBulletPrefab, transform.position, Quaternion.identity);
+        if(enemyBulletFireVFX != null)
+        {
+            Instantiate(enemyBulletFireVFX, shootPoint.position, Quaternion.identity);
+        }
+
+        GameObject bullet = Instantiate(enemyBulletPrefab, shootPoint.position, Quaternion.identity);
         EnemyBullet enemyBullet = bullet.GetComponent<EnemyBullet>();
         if(enemyBullet != null)
         {

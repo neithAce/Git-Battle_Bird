@@ -38,6 +38,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1440476661138969020}
   - {fileID: 4580206548639935306}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -216,6 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDamage
   damage: 1
+  hitVFX: {fileID: 4708066818147091829, guid: eff5564ad2942e34c9b31033fa0c7504, type: 3}
 --- !u!114 &6732949141165786361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +232,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
   enemyBulletPrefab: {fileID: 6235888194436971473, guid: a6ed3a10aa4ce4a49a81fd0b873546c0, type: 3}
   shootInterval: 3
+  firePoint: {fileID: 1440476661138969020}
   shootSFX: {fileID: 8300000, guid: b87ca1d2473e16b4aa0306b662909064, type: 3}
+  enemyBulletFireVFX: {fileID: 1561060085082529655, guid: 0ae690ef14d52874a9a54265886ab8ea, type: 3}
 --- !u!114 &4072252250427049796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,3 +360,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &7907494825687815448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1440476661138969020}
+  m_Layer: 3
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1440476661138969020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7907494825687815448}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.68, y: -0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1617035601106687830}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

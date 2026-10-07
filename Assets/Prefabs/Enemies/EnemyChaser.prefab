@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyChaserDamage
   damage: 1
+  hitVFX: {fileID: 4708066818147091829, guid: eff5564ad2942e34c9b31033fa0c7504, type: 3}
 --- !u!114 &5108909763016678096
 MonoBehaviour:
   m_ObjectHideFlags: 0
